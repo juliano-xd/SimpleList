@@ -12,12 +12,12 @@ public class ListTS {
         final int one = 1;
         int z = this.length += one;
 
-        Object[] nova = new Object[z];
+        Object[] newL = new Object[z];
         for (int i = 0; i < list.length; i++) {
-            nova[i] = list[i];
+            newL[i] = list[i];
         }
-        nova[z - one] = value;
-        list = nova;
+        newL[z - one] = value;
+        list = newL;
     }
 
     public void remove(int index) {
@@ -25,11 +25,11 @@ public class ListTS {
         if (index < z || index > this.length)
             return;
         final int one = 1;
-        Object[] nova = new Object[this.length -= one];
+        Object[] newL = new Object[this.length -= one];
         for (int i = z; i < list.length; i++) {
-            nova[i > index ? i - one : i] = list[i];
+            newL[i > index ? i - one : i] = list[i];
         }
-        list = nova;
+        list = newL;
     }
 
     public void remove(Object object) {
