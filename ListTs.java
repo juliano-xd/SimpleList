@@ -1,11 +1,11 @@
 
 public class ListTS {
-    public Object[] lista;
+    public Object[] list;
 
     public int length;
 
     public ListTS() {
-        lista = new Object[0];
+        list = new Object[0];
     }
 
     public void add(Object value) {
@@ -13,11 +13,11 @@ public class ListTS {
         int z = this.length += one;
 
         Object[] nova = new Object[z];
-        for (int i = 0; i < lista.length; i++) {
-            nova[i] = lista[i];
+        for (int i = 0; i < list.length; i++) {
+            nova[i] = list[i];
         }
         nova[z - one] = value;
-        lista = nova;
+        list = nova;
     }
 
     public void remove(int index) {
@@ -26,10 +26,10 @@ public class ListTS {
             return;
         final int one = 1;
         Object[] nova = new Object[this.length -= one];
-        for (int i = z; i < lista.length; i++) {
-            nova[i > index ? i - one : i] = lista[i];
+        for (int i = z; i < list.length; i++) {
+            nova[i > index ? i - one : i] = list[i];
         }
-        lista = nova;
+        list = nova;
     }
 
     public void remove(Object object) {
@@ -38,7 +38,7 @@ public class ListTS {
 
     public ListTS find(Object value) {
         ListTS finder = new ListTS();
-        for (Object object : lista) {
+        for (Object object : list) {
             if (object.toString().contains(value.toString()))
                 finder.add(object);
         }
@@ -46,7 +46,7 @@ public class ListTS {
     }
 
     public int getIndexOfObject(Object value) {
-        final Object[] iii = lista;
+        final Object[] iii = list;
         int i = iii.length;
         final int minone = -1;
         while (i != 0) {
@@ -60,47 +60,47 @@ public class ListTS {
         final int z = 0;
         if (fromHere < z || fromHere > length || toHere < z || toHere > length || fromHere == toHere)
             return;
-        final Object ob0 = lista[fromHere];
-        final Object ob1 = lista[toHere];
-        lista[fromHere] = ob1;
-        lista[toHere] = ob0;
+        final Object ob0 = list[fromHere];
+        final Object ob1 = list[toHere];
+        list[fromHere] = ob1;
+        list[toHere] = ob0;
     }
 
     public ListTS subList(int start, int end) {
         ListTS newL = new ListTS();
         while (start != end) {
-            newL.add(lista[start]);
+            newL.add(list[start]);
             start++;
         }
         return newL;
     }
 
     public void clear() {
-        lista = new Object[0];
+        list = new Object[0];
     }
 
     public int getLength() {
-        return lista.length;
+        return list.length;
     }
 
     public Object getInIndex(int index) {
-        return lista[index];
+        return list[index];
     }
 
-    public void listar() {
-        for (int c = 0; c < lista.length; c++) {
+    public void list() {
+        for (int c = 0; c < list.length; c++) {
             final int one = 1;
-            for (int i = 0; i < lista.length - one; i++) {
-                this.revertPos(i, lista[i].hashCode() < lista[i + one].hashCode() ? i : i + one);
+            for (int i = 0; i < list.length - one; i++) {
+                this.revertPos(i, list[i].hashCode() < list[i + one].hashCode() ? i : i + one);
             }
         }
     }
 
-    public void listar(int form) {
-        for (int c = 0; c < lista.length; c++) {
+    public void list(int form) {
+        for (int c = 0; c < list.length; c++) {
             final int one = 1;
-            for (int i = 0; i < lista.length - one; i++) {
-                this.revertPos(i, lista[i].hashCode() < lista[i + one].hashCode() ? form == 0 ? i : i + one
+            for (int i = 0; i < list.length - one; i++) {
+                this.revertPos(i, list[i].hashCode() < list[i + one].hashCode() ? form == 0 ? i : i + one
                         : form == 0 ? i + one : i);
             }
         }
