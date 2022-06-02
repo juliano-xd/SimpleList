@@ -30,9 +30,7 @@ public class ListTS {
         list = newL;
     }
 
-    public void remove(Object object) {
-        remove(getIndexOfObject(object));
-    }
+    public void remove(Object object) { remove(getIndexOfObject(object)); }
 
     public void revertPos(int fromHere, int toHere) {
         final int z = 0;
@@ -66,7 +64,7 @@ public class ListTS {
             }
         }
     }
-    
+
     public int getIndexOfObject(Object value) {
         final Object[] iii = list;
         int i = iii.length;
@@ -77,7 +75,7 @@ public class ListTS {
         }
         return minone;
     }
-    
+
     public int getLength() {
         return list.length;
     }
@@ -86,7 +84,7 @@ public class ListTS {
         return list[index];
     }
 
-    public ListTS find(Object value) {
+    public ListTS find(Object value) { // SLOWER CODE
         ListTS finder = new ListTS();
         for (Object object : list) {
             if (object.toString().contains(value.toString()))
@@ -110,5 +108,13 @@ public class ListTS {
             l.add(object);
         }
         return l;
+    }
+
+    public boolean contains(Object value) {
+        boolean exist = false;
+        for (Object object : list) {
+            if (object == value) exist = true; continue;
+        }
+        return exist;
     }
 }
