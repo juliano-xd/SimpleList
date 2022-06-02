@@ -1,8 +1,8 @@
 
 public class ListTS {
-    public Object[] list;
 
-    public int length;
+    public Object[] list;
+    public int length = list.length;
 
     public ListTS() {
         list = new Object[0];
@@ -36,26 +36,6 @@ public class ListTS {
         remove(getIndexOfObject(object));
     }
 
-    public ListTS find(Object value) {
-        ListTS finder = new ListTS();
-        for (Object object : list) {
-            if (object.toString().contains(value.toString()))
-                finder.add(object);
-        }
-        return finder;
-    }
-
-    public int getIndexOfObject(Object value) {
-        final Object[] iii = list;
-        int i = iii.length;
-        final int minone = -1;
-        while (i != 0) {
-            if (iii[i += minone] == value)
-                return i;
-        }
-        return minone;
-    }
-
     public void revertPos(int fromHere, int toHere) {
         final int z = 0;
         if (fromHere < z || fromHere > length || toHere < z || toHere > length || fromHere == toHere)
@@ -66,25 +46,8 @@ public class ListTS {
         list[toHere] = ob0;
     }
 
-    public ListTS subList(int start, int end) {
-        ListTS newL = new ListTS();
-        while (start != end) {
-            newL.add(list[start]);
-            start++;
-        }
-        return newL;
-    }
-
     public void clear() {
         list = new Object[0];
-    }
-
-    public int getLength() {
-        return list.length;
-    }
-
-    public Object getInIndex(int index) {
-        return list[index];
     }
 
     public void list() {
@@ -104,6 +67,43 @@ public class ListTS {
                         : form == 0 ? i + one : i);
             }
         }
+    }
+    
+    public int getIndexOfObject(Object value) {
+        final Object[] iii = list;
+        int i = iii.length;
+        final int minone = -1;
+        while (i != 0) {
+            if (iii[i += minone] == value)
+                return i;
+        }
+        return minone;
+    }
+    
+    public int getLength() {
+        return list.length;
+    }
+
+    public Object getInIndex(int index) {
+        return list[index];
+    }
+
+    public ListTS find(Object value) {
+        ListTS finder = new ListTS();
+        for (Object object : list) {
+            if (object.toString().contains(value.toString()))
+                finder.add(object);
+        }
+        return finder;
+    }
+
+    public ListTS subList(int start, int end) {
+        ListTS newL = new ListTS();
+        while (start != end) {
+            newL.add(list[start]);
+            start++;
+        }
+        return newL;
     }
 
     public static ListTS toList(Object[] values) {
