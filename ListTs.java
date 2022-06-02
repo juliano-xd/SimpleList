@@ -1,6 +1,6 @@
 public class ListTS {
     public Object[] list;
-    public int length = list.length;
+    public int length;
 
     public ListTS() {
         list = new Object[0];
