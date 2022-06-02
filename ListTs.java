@@ -1,6 +1,4 @@
-
 public class ListTS {
-
     public Object[] list;
     public int length = list.length;
 
