@@ -30,7 +30,9 @@ public class ListTS {
         list = newL;
     }
 
-    public void remove(Object object) { remove(getIndexOfObject(object)); }
+    public void remove(Object object) {
+        remove(getIndexOfObject(object));
+    }
 
     public void revertPos(int fromHere, int toHere) {
         final int z = 0;
@@ -113,7 +115,9 @@ public class ListTS {
     public boolean contains(Object value) {
         boolean exist = false;
         for (Object object : list) {
-            if (object == value) exist = true; continue;
+            if (object == value)
+                exist = true;
+            continue;
         }
         return exist;
     }
