@@ -86,7 +86,7 @@ public class ListTS {
         return list[index];
     }
 
-    public ListTS find(Object value) { // SLOWER
+    public ListTS find(Object value) { // SLOWER CODE
         ListTS finder = new ListTS();
         for (Object object : list) {
             if (object.toString().contains(value.toString()))
