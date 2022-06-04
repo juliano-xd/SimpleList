@@ -81,32 +81,23 @@ public class ListTS {
 
     public ListTS find(Object value) { // SLOWER CODE
         ListTS finder = new ListTS();
-        for (Object object : list) {
-            if (object.toString().contains(value.toString()))
-                finder.add(object);
-        }
+        for (Object object : list) if (object.toString().contains(value.toString())) finder.add(object);
         return finder;
     }
 
     public ListTS subList(int start, int end) {
         ListTS newL = new ListTS();
-        while (start != end) {
-            newL.add(list[start]);
-            start++;
-        }
+        int i = start--;
+        while (i++ != end) newL.add(list[i]);
         return newL;
     }
 
     public boolean contains(Object value) {
-        boolean exist = false;
-        for (Object object : list) {
-            if (object == value)
-                exist = true;
-            continue;
-        }
-        return exist;
+        boolean contains = false;
+        for (Object object : list) if (object == value) { contains = true; break; }
+        return contains;
     }
-    
+
     public static ListTS toList(Object[] values) {
         ListTS newL = new ListTS();
         int i = -1;
