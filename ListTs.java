@@ -30,9 +30,7 @@ public class ListTS {
         list = newL;
     }
 
-    public void remove(Object object) {
-        remove(getIndexOfObject(object));
-    }
+    public void remove(Object object) { remove(getIndexOfObject(object)); }
 
     public void revertPos(int fromHere, int toHere) {
         final int z = 0;
@@ -44,9 +42,7 @@ public class ListTS {
         list[toHere] = ob0;
     }
 
-    public void clear() {
-        list = new Object[0];
-    }
+    public void clear() { list = new Object[0]; }
 
     public void list() {
         for (int c = 0; c < list.length; c++) {
@@ -101,14 +97,6 @@ public class ListTS {
         return newL;
     }
 
-    public static ListTS toList(Object[] values) {
-        ListTS l = new ListTS();
-        for (Object object : values) {
-            l.add(object);
-        }
-        return l;
-    }
-
     public boolean contains(Object value) {
         boolean exist = false;
         for (Object object : list) {
@@ -117,5 +105,12 @@ public class ListTS {
             continue;
         }
         return exist;
+    }
+    
+    public static ListTS toList(Object[] values) {
+        ListTS newL = new ListTS();
+        int i = -1;
+        while (i++ != values.length) newL.add(values[i]);
+        return newL;
     }
 }
