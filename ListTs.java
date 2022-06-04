@@ -69,13 +69,10 @@ public class ListTS {
 
     public int getIndexOfObject(Object value) {
         final Object[] iii = list;
+        final int minusOne = -1;
         int i = iii.length;
-        final int minone = -1;
-        while (i != 0) {
-            if (iii[i += minone] == value)
-                return i;
-        }
-        return minone;
+        while (i != 0) if (value == iii[i += minusOne]) return i;
+        return minusOne;
     }
 
     public int getLength() {
