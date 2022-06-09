@@ -1,8 +1,8 @@
-public class ListTS {
+public class ListTs {
     public Object[] list;
     public int length;
 
-    public ListTS() { list = new Object[0]; }
+    public ListTs() { list = new Object[0]; }
 
     public void add(Object value) {
         final int one = 1;
@@ -18,7 +18,7 @@ public class ListTS {
         if (index < z || index > this.length) return;
         final int one = 1;
         Object[] newL = new Object[this.length -= one];
-        for (int i = z; i != list.length; i++) newL[i > index ? i - one : i] = list[i];
+        for (int i = z; i != list.length; i++) newL[i >= index ? i - one : i] = list[i];
         list = newL;
     }
 
@@ -60,28 +60,28 @@ public class ListTS {
     public int getLength() { return list.length; }
 
     public Object getInIndex(int index) { return list[index]; }
-
-    public ListTS find(Object value) { // SLOWER CODE
-        ListTS finder = new ListTS();
+    
+    public ListTs find(Object value) { // SLOWER CODE    0,3 miliseconds
+        ListTs finder = new ListTs();
         for (Object object : list) if (object.toString().contains(value.toString())) finder.add(object);
         return finder;
     }
 
-    public ListTS subList(int start, int end) {
-        ListTS newL = new ListTS();
+    public ListTs subList(int start, int end) {
+        ListTs newL = new ListTs();
         int i = start--;
         while (i++ != end) newL.add(list[i]);
         return newL;
     }
 
     public boolean contains(Object value) {
-        boolean contains = false;
-        for (Object object : list) if (object == value) { contains = true; break; }
-        return contains;
+        int i = -1;
+        while (i++ != list.length) if (value == list[i]) return true;
+        return false;
     }
 
-    public static ListTS toList(Object[] values) {
-        ListTS newL = new ListTS();
+    public static ListTs toList(Object[] values) {
+        ListTs newL = new ListTs();
         int i = -1;
         while (i++ != values.length) newL.add(values[i]);
         return newL;
