@@ -89,8 +89,8 @@ public class ListTs{
     }
 
     public String toString() {
-        final int L = list.length-1;
-        String xxx = null;
+        final int L = this.list.length-1;
+        String xxx = "";
         for (int i = 0; i != L; i++) xxx+=this.list[i]+", ";
         return '['+xxx+this.list[L]+']';
     }
