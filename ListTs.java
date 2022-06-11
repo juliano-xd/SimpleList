@@ -50,6 +50,8 @@ public class ListTs{
             for (int i = 0; i < L - one; i++) this.revertPos(i, this.list[i].hashCode() < this.list[i + one].hashCode() ? form == 0 ? i : i + one : form == 0 ? i + one : i);
         }
     }
+    
+    public void addAll(ListTs values) { for (Object object : values.list) this.add(object); }
 
     public int getIndexOfObject(Object value) {
         final Object[] iii = this.list;
@@ -82,16 +84,16 @@ public class ListTs{
         return false;
     }
 
-    public static ListTs toList(Object[] values) {
-        ListTs newL = new ListTs();
-        for (int i = 0; i < values.length; i++) newL.add(values[i]);
-        return newL;
-    }
-
     public String toString() {
         final int L = this.list.length-1;
         String xxx = "";
         for (int i = 0; i != L; i++) xxx+=this.list[i]+", ";
         return '['+xxx+this.list[L]+']';
+    }
+
+    public static ListTs toList(Object[] values) {
+        ListTs newL = new ListTs();
+        for (int i = 0; i < values.length; i++) newL.add(values[i]);
+        return newL;
     }
 }
