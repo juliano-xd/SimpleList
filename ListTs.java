@@ -79,8 +79,7 @@ public class ListTs{
     }
 
     public boolean contains(Object value) {
-        int i = -1;
-        while (i++ != this.list.length) if (value == this.list[i]) return true;
+        for (Object object : this.list) if(value == object) return true;
         return false;
     }
 
@@ -93,7 +92,7 @@ public class ListTs{
 
     public static ListTs toList(Object[] values) {
         ListTs newL = new ListTs();
-        for (int i = 0; i < values.length; i++) newL.add(values[i]);
+        for (Object object : values) newL.add(object);
         return newL;
     }
 }
