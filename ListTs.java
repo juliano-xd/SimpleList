@@ -88,6 +88,12 @@ public class ListTs{
         while (i++ != end) newL.add(this.list[i]);
         return newL;
     }
+    
+    public boolean equals(ListTs list) {
+        final Object[] X = this.list;
+        for (int i = 0; i < X.length; i++) if(X[i] != list.list[i]) return false;
+        return true;
+    }
 
     public boolean contains(Object value) {
         for (Object object : this.list) if(object == value) return true;
