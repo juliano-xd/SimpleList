@@ -116,7 +116,7 @@ public class ListTs{
 
     public String toString() {
         final int L = this.list.length-(byte)1;
-        if(L == -1) return "[]";
+        if(L == (byte)-1) return "[]";
         String xxx = "";
         for (int i = 0; i != L; i++) xxx+=this.list[i]+", ";
         return '['+xxx+this.list[L]+']';
