@@ -1,33 +1,42 @@
 public class ListTs{
-    public Object[] list;
+    public Object list[];
     public int length;
 
-    public ListTs() { this.list = new Object[0]; }
+    public ListTs() { this.list = new Object[(byte)0]; }
 
     public void add(Object value) {
-        final int one = 1;
-        int z = this.length += one;
+        final byte one = 1;
+        final int z = this.length += one;
         Object[] newL = new Object[z];
         for (int i = 0; i != this.list.length; i++) newL[i] = this.list[i];
         newL[z - one] = value;
         this.list = newL;
     }
 
-    public void remove(int index) {
-        final int z = 0;
-        if (index < z || index > this.length) return;
-        final int one = 1;
-        if(this.length == one && index == z) {clear(); return;}
-        Object[] newL = new Object[this.length -= one];
-        for (int i = z; i != this.list.length; i++) newL[i > index ? i - one : i] = this.list[i];
+    public void addFirst(Object value){
+        final byte one = 1;
+        Object[] newL = new Object[this.length += one];
+        newL[(byte)0] = value;
+        for (int i = 1; i != this.list.length; i++) newL[i] =this.list[i];
+        newL[newL.length - one] = this.list[this.length-(byte)2];
         this.list = newL;
     }
 
-    public void remove(Object object) { remove(getIndexOfObject(object)); }
+    public void remove(int index) {
+        final byte z = 0;
+        if (index < z || index > this.length) return;
+        final byte one = 1;
+        if(this.length == one) {clear(); return;}
+        Object[] newL = new Object[this.length -= one];
+        for (int i = z; i != this.list.length; i+=one) newL[i > index ? i - one : i] = this.list[i];
+        this.list = newL;
+    }
+
+    public void remove(Object object) { this.remove(getIndexOfObject(object)); }
 
     public void revertPos(int fromHere, int toHere) {
         final int size = this.length;
-        final int z = 0;
+        final byte z = 0;
         if (fromHere != toHere && fromHere >= z && toHere >= z && fromHere < size && toHere < size) {
             final Object ob0 = this.list[fromHere];
             final Object ob1 = this.list[toHere];
@@ -43,7 +52,7 @@ public class ListTs{
     public void list() {
         final int L = this.list.length;
         for (int c = 0; c < L; c++) {
-            final int one = 1;
+            final byte one = 1;
             for (int i = 0; i < L - one; i++) this.revertPos(i, this.list[i].hashCode() < this.list[i + one].hashCode() ? i : i + one);
         }
     }
@@ -51,7 +60,7 @@ public class ListTs{
     public void list(int form) {
         final int L = this.list.length;
         for (int c = 0; c < L; c++) {
-            final int one = 1;
+            final byte one = 1;
             for (int i = 0; i < L - one; i++) this.revertPos(i, this.list[i].hashCode() < this.list[i + one].hashCode() ? form == 0 ? i : i + one : form == 0 ? i + one : i);
         }
     }
@@ -66,7 +75,7 @@ public class ListTs{
 
     public int getIndexOfObject(Object value) {
         final Object[] iii = this.list;
-        final int minusOne = -1;
+        final byte minusOne = -1;
         int i = iii.length;
         while (i != 0) if (value == iii[i += minusOne]) return i;
         return minusOne;
@@ -75,7 +84,7 @@ public class ListTs{
     public int getLength() { return this.list.length; }
 
     public Object getInIndex(int index) { return this.list[index]; }
-    
+
     public ListTs find(Object value) {
         ListTs finder = new ListTs();
         for (Object object : this.list) if (object.toString().contains(value.toString())) finder.add(object);
@@ -106,13 +115,14 @@ public class ListTs{
     }
 
     public String toString() {
-        final int L = this.list.length-1;
+        final int L = this.list.length-(byte)1;
+        if(L == -1) return "[]";
         String xxx = "";
         for (int i = 0; i != L; i++) xxx+=this.list[i]+", ";
         return '['+xxx+this.list[L]+']';
     }
 
-    public static ListTs toList(Object[] values) {
+    public static ListTs toList(Object values[]) {
         ListTs newL = new ListTs();
         for (Object object : values) newL.add(object);
         return newL;
