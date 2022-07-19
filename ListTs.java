@@ -8,7 +8,7 @@ public class ListTs{
         final byte one = 1;
         final int z = this.length += one;
         Object[] newL = new Object[z];
-        for (int i = 0; i != this.list.length; i++) newL[i] = this.list[i];
+        System.arraycopy(this.list, 0, newL, 0, z-one);
         newL[z - one] = value;
         this.list = newL;
     }
@@ -17,8 +17,7 @@ public class ListTs{
         final byte one = 1;
         Object[] newL = new Object[this.length += one];
         newL[(byte)0] = value;
-        for (int i = 1; i != this.list.length; i++) newL[i] =this.list[i];
-        newL[newL.length - one] = this.list[this.length-(byte)2];
+        System.arraycopy(this.list, one, newL, one, length-one);
         this.list = newL;
     }
 
