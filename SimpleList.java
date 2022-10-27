@@ -1,19 +1,19 @@
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class ListTs<T> implements Iterable<T>{
+public class SimpleList<T> implements Iterable<T>{
     transient Object[] list;
     private int length;
 
     public int size(){ return length; }
 
     @SafeVarargs
-    public ListTs(T... preList){
+    public SimpleList(T... preList){
         this.list   = preList;
         this.length = preList.length;
     }
 
-    public ListTs(){ this.list = new Object[this.length]; }
+    public SimpleList(){ this.list = new Object[this.length]; }
 
     private int increaseSize(int q){
         return this.length+=q;
@@ -99,12 +99,12 @@ public class ListTs<T> implements Iterable<T>{
 
         @Override
         public boolean hasNext() {
-            return pointer != ListTs.this.length;
+            return pointer != SimpleList.this.length;
         }
 
         @Override
         public T next() {
-            return (T) ListTs.this.get(pointer++);
+            return (T) SimpleList.this.get(pointer++);
         }
     }
 }
