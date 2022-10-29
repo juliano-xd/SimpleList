@@ -80,7 +80,9 @@ public class SimpleList<T> implements Iterable<T>{
         return true;
     }
 
-    private void clear() { this.list = new Object[this.length = 0];}
+    private void clear() {
+        this.list = new Object[this.length = 0];
+    }
 
     @Override
     public String toString(){
