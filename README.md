@@ -2,7 +2,12 @@ Lista otimizada para uso em aparelhos Android, extremamente simples , leve, e di
 
 Possiveis erros serão corrigidos nas proximas versões
 
-`Novo`
-- *Funcionando com foreach*
-- *Corrigido erro ao tentar deletar o ultimo indice da lista*
-- *Codigo menor*
+*`Atualização 27/10/2022`*
+- *Implementado interface `Iterable`*
+- *Corrigido erro ao tentar remover o ultimo indice da lista*
+- *Codigo compilado menor*
+
+*`Novo 29/10/2022`*
+- *Metodo `public void remove(int index)` mais rapido*
+- *Novo metodo `void verifyLimit(int index)` que verifica se `int index` está dentro do tamanho da lista, retornando `new IndexOutOfBoundsException(index)` caso não esteja*
+- *Codigo compilado menor*

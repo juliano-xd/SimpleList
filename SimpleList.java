@@ -15,46 +15,46 @@ public class SimpleList<T> implements Iterable<T>{
 
     public SimpleList(){ this.list = new Object[this.length]; }
 
-    private int increaseSize(int q){
-        return this.length+=q;
+    private int increaseSize(){
+        return ++this.length;
     }
 
-    private int decreaseSize(int q){
-        return this.length-=q;
+    private int decreaseSize(){
+        return --this.length;
     }
 
     public void add(T value){
-        int one = 1;
-        int size = this.increaseSize(one);
+        int size = this.increaseSize();
         Object[] list = Arrays.copyOf(this.list, size);
-        list[size-one] = value;
+        list[size-1] = value;
         this.list = list;
     }
 
     public void remove(int index){
-        int oldSize = this.length;
-        int one = 1;
-        if(oldSize > one){
-            int zero = 0;
-            Object[] oldList = this.list;
-            Object[] list = new Object[this.decreaseSize(one)];
-            for (; zero < oldSize; zero+=one)
-                list[zero >= index ? zero - one : zero] = oldList[zero];
-            this.list = list;
-        }else this.clear();
+        this.verifyIndex(index);
+        Object[] oldList = this.list;
+        int newLength = this.decreaseSize();
+        Object[] list = new Object[newLength];
+        System.arraycopy(oldList, index + 1, oldList, index, newLength - index);
+        System.arraycopy(oldList, 0, list, 0, newLength);
+        this.list = list;
+    }
+
+    void verifyIndex(int index){
+        if(index < 0 || index >= length)
+            throw new IndexOutOfBoundsException(index);
     }
 
     @SuppressWarnings("unchecked")
     public T get(int index){
+        this.verifyIndex(index);
         return (T) this.list[index];
     }
 
     public void revertPosition(int fromHere, int toHere) {
-        final int size = this.length;
-        final byte z = 0;
-        if (fromHere != toHere && fromHere >= z && toHere >= z && fromHere < size && toHere < size) {
-            final Object object1 = this.list[fromHere];
-            final Object object2 = this.list[toHere];
+        if (fromHere != toHere) {
+            T object1 = this.get(fromHere);
+            T object2 = this.get(toHere);
             this.list[fromHere] = object2;
             this.list[toHere] = object1;
         }
@@ -104,7 +104,7 @@ public class SimpleList<T> implements Iterable<T>{
 
         @Override
         public T next() {
-            return (T) SimpleList.this.get(pointer++);
+            return SimpleList.this.get(pointer++);
         }
     }
 }
