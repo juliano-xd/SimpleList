@@ -1,4 +1,4 @@
-Lista otimizada para uso em aparelhos Android, extremamente simples , leve, e direta ao ponto, com intuito de ser o mais performatico possivel
+Lista otimizada para uso em aparelhos Android, extremamente simples , leve, e direta ao ponto, com intuito de ser performatico
 
 Possiveis erros serão corrigidos nas proximas versões
 
