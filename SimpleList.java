@@ -94,7 +94,6 @@ public class SimpleList<T> implements Iterable<T>{
 
     class ITR implements Iterator<T>{
         int pointer;
-
         ITR(){}
 
         @Override
