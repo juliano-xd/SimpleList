@@ -1,16 +1,16 @@
-## Simple
-Lista otimizada para uso em aparelhos Android, extremamente simples , leve, e direta ao ponto, com intuito de ser performatico
+# SimpleList<T>
+#### Lista otimizada para uso em aparelhos Android, extremamente simples, leve, e direta ao ponto, com intuito de ser performático
 
-Possiveis erros serão corrigidos nas proximas versões``
+#### Possíveis erros serão corrigidos nas próximas versões
 
 *`Atualização 27/10/2022`*
 
-- *Implementado interface `Iterable`*
-- *Corrigido erro ao tentar remover o ultimo indice da lista*
-- *Codigo compilado menor*
-
+- *Implementado interface `Iterable`*
+- *Corrigido erro ao tentar remover o último índice da lista*
+- *Menor código compilado*
+  
 *`Novo 29/10/2022`*
 
-- *Metodo `public void remove(int index)` mais rapido*
-- *Novo metodo `void verifyLimit(int index)` que verifica se `int index` está dentro do tamanho da lista, retornando `throw new IndexOutOfBoundsException(index)` caso não esteja*
-- *Codigo compilado menor*
+- *Método `public void remove(int index)` mais rápido*
+- *Novo método `void verifyLimit(int index)` que verifica se int `index` está dentro do tamanho da lista, retornando `throw new IndexOutOfBoundsException(index)` caso não esteja*
+- *Menor código compilado*
