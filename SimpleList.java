@@ -1,11 +1,12 @@
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.ListIterator;
 
+@SuppressWarnings("unchecked")
 public class SimpleList<T> implements Iterable<T>{
-    transient Object[] list;
+    private Object[] list;
     private int length;
 
-    public int size(){ return length; }
+    public int size(){ return this.length; }
 
     @SafeVarargs
     public SimpleList(T... preList){
@@ -15,29 +16,35 @@ public class SimpleList<T> implements Iterable<T>{
 
     public SimpleList(){ this.list = new Object[this.length]; }
 
-    private int increaseSize(){
-        return ++this.length;
-    }
-
-    private int decreaseSize(){
-        return --this.length;
-    }
-
     public void add(T value){
-        int size = this.increaseSize();
-        Object[] list = Arrays.copyOf(this.list, size);
-        list[size-1] = value;
+        int oldSize = this.size();
+        int newSize = oldSize + 1;
+        Object[] list;
+        System.arraycopy(this.list, 0, list = new Object[newSize], 0, oldSize);
+        list[oldSize] = value;
         this.list = list;
+        this.length = newSize;
     }
 
     public void remove(int index){
         this.verifyIndex(index);
+        int newSize = this.size() -1;
         Object[] oldList = this.list;
-        int newLength = this.decreaseSize();
-        Object[] list = new Object[newLength];
-        System.arraycopy(oldList, index + 1, oldList, index, newLength - index);
-        System.arraycopy(oldList, 0, list, 0, newLength);
+        System.arraycopy(oldList ,index+1 ,oldList ,index ,newSize - index);
+        Object[] list;
+        System.arraycopy(oldList, 0, list = new Object[newSize], 0, newSize);
         this.list = list;
+        this.length = newSize;
+    }
+
+    public void removeReferences(T value){
+        Object[] list = new Object[this.size()-this.references(value)];
+        int pointer = 0;
+        for (T object : this)
+            if(object != value)
+                list[pointer++] = object;
+        this.list = list;
+        this.length = list.length;
     }
 
     void verifyIndex(int index){
@@ -45,10 +52,20 @@ public class SimpleList<T> implements Iterable<T>{
             throw new IndexOutOfBoundsException(index);
     }
 
-    @SuppressWarnings("unchecked")
     public T get(int index){
         this.verifyIndex(index);
         return (T) this.list[index];
+    }
+
+    public void set(int index,T value){
+        this.verifyIndex(index);
+        this.list[index] = value;
+    }
+
+    public int references(T value){
+        int refs = 0;
+        for (T o : this) if(o == value) refs++;
+        return refs;
     }
 
     public void revertPosition(int fromHere, int toHere) {
@@ -67,9 +84,7 @@ public class SimpleList<T> implements Iterable<T>{
     }
 
     public boolean contains(T value) {
-        Object[] list = this.list;
-        for (int i = 0; i < list.length; i++) 
-            if(list[i] == value) return true;
+        for (T object : this) if(object == value) return true;
         return false;
     }
 
@@ -80,32 +95,43 @@ public class SimpleList<T> implements Iterable<T>{
         return true;
     }
 
-    private void clear() {
-        this.list = new Object[this.length = 0];
-    }
+    public void clear() { this.list = new Object[this.length = 0]; }
+    
+    public T[] toArray(){ return (T[]) this.list; }
 
     @Override
-    public String toString(){
-        return Arrays.toString(list);
-    }
+    public String toString(){ return Arrays.toString(list); }
 
     @Override
-    public Iterator<T> iterator() {
-        return new ITR();
-    }
+    public ListIterator<T> iterator() {
+        return new ListIterator<T>() {
+            int pointer;
+            @Override
+            public boolean hasNext() { return this.pointer < SimpleList.this.size(); }
 
-    class ITR implements Iterator<T>{
-        int pointer;
-        ITR(){}
+            @Override
+            public T next() {return SimpleList.this.get(this.pointer++);}
 
-        @Override
-        public boolean hasNext() {
-            return pointer != SimpleList.this.length;
-        }
+            @Override
+            public boolean hasPrevious() { return this.pointer != 0; }
 
-        @Override
-        public T next() {
-            return SimpleList.this.get(pointer++);
-        }
+            @Override
+            public T previous() { return SimpleList.this.get(this.pointer--); }
+
+            @Override
+            public int nextIndex() { return Math.min(this.pointer+1, SimpleList.this.size()); }
+
+            @Override
+            public int previousIndex() { return Math.max(this.pointer-1, 0); }
+
+            @Override
+            public void remove() { SimpleList.this.remove(this.pointer); }
+
+            @Override
+            public void set(T value) { SimpleList.this.set(this.pointer, value); }
+
+            @Override
+            public void add(T value) { SimpleList.this.add(value);}
+        };
     }
 }

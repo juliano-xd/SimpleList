@@ -1,15 +1,28 @@
-Lista otimizada para uso em aparelhos Android, extremamente simples , leve, e direta ao ponto, com intuito de ser performatico
+# SimpleList<T>
+#### Lista otimizada para uso em aparelhos Android, extremamente simples, leve, e direta ao ponto, com intuito de ser performático
 
-Possiveis erros serão corrigidos nas proximas versões
+#### Possíveis erros serão corrigidos nas próximas versões
 
 *`Atualização 27/10/2022`*
 
-- *Implementado interface `Iterable`*
-- *Corrigido erro ao tentar remover o ultimo indice da lista*
-- *Codigo compilado menor*
+- *Implementado interface `Iterable`*
+- *Corrigido erro ao tentar remover o último índice da lista*
+- *Menor código compilado*
+  
+*`Atualização 29/10/2022`*
 
-*`Novo 29/10/2022`*
+- *Método `public void remove(int index)` mais rápido*
+- *Novo método `void verifyLimit(int index)` verifica se int `index` está dentro do tamanho da lista, retornando `throw new IndexOutOfBoundsException(index)` caso não esteja*
+- *Menor código compilado*
 
-- *Metodo `public void remove(int index)` mais rapido*
-- *Novo metodo `void verifyLimit(int index)` que verifica se `int index` está dentro do tamanho da lista, retornando `new IndexOutOfBoundsException(index)` caso não esteja*
-- *Codigo compilado menor*
+*`Novo 14/11/2022`*
+
+- *Metodos `private int increaseSize()` e `private int decreaseSize()` removidos*
+- *Corrigido possivel erro ao adicionar itens a lista*
+- *Metodo `public Iterator iterator()` retorna agora `ListIterator<T>`*
+- *Novo metodo `public T[] toArray()` retorna `this.list`*
+- *Novo metodo `public int references(T value)` retorna a quantidade de referencias de `value` na lista*
+- *Novo metodo `public void removeReferences(T value)` remove de forma rapida todos os objetos `value` da lista*
+- *Novo metodo `public void set(int index, T value)` define objeto no indice `index` igual a `value`*
+- *Metodo `private void clear()` agora `public void clear()`*
+- *Código limpo*
