@@ -98,9 +98,8 @@ public class SimpleList<T> implements Iterable<T> {
     }
 
     public boolean every(T value) {
-        Object[] list = this.list;
-        for (int i = 0; i < list.length; i++)
-            if (list[i] != value)
+        for (T object : this)
+            if(object != value)
                 return false;
         return true;
     }

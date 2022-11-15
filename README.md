@@ -17,12 +17,12 @@
 
 *`Novo 14/11/2022`*
 
-- *Metodos `private int increaseSize()` e `private int decreaseSize()` removidos*
+- *Métodos `private int increaseSize()` e `private int decreaseSize()` removidos*
 - *Corrigido possivel erro ao adicionar itens a lista*
 - *Metodo `public Iterator iterator()` retorna agora `ListIterator<T>`*
-- *Novo metodo `public T[] toArray()` retorna `this.list`*
-- *Novo metodo `public int references(T value)` retorna a quantidade de referencias de `value` na lista*
-- *Novo metodo `public void removeReferences(T value)` remove de forma rapida todos os objetos `value` da lista*
-- *Novo metodo `public void set(int index, T value)` define objeto no indice `index` igual a `value`*
-- *Metodo `private void clear()` agora `public void clear()`*
+- *Novo método `public T[] toArray()` retorna `this.list`*
+- *Novo método `public int references(T value)` retorna a quantidade de referencias de `value` na lista*
+- *Novo método `public void removeReferences(T value)` remove de forma rapida todos os objetos `value` da lista*
+- *Novo método `public void set(int index, T value)` define objeto no indice `index` igual a `value`*
+- *Método `private void clear()` agora `public void clear()`*
 - *Código limpo*
